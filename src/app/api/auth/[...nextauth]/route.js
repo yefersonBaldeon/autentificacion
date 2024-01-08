@@ -20,15 +20,13 @@ export const authOptions = {
             }
         })
 
-        console.log("vamos con todo")
-        if (!userFound) return null
-
+        if (!userFound) throw new Error('No user found')
 
         console.log(userFound)
 
         const matchPassword = await bcrypt.compare(credentials.password, userFound.password)
 
-        if (!matchPassword) return null
+        if (!matchPassword) throw new Error('Wrong password')
 
         return {
             id: userFound.id,
@@ -38,9 +36,9 @@ export const authOptions = {
       },
     }),
   ],
-//   pages: {
-//     signIn: "/auth/login",
-//   }
+  pages: {
+    signIn: "/auth/login",
+  }
 };
 
 const handler = NextAuth(authOptions);

@@ -14,9 +14,9 @@ function RegisterPage() {
 
     console.log(data);
 
-    // if (data.password !== data.confirmPassword) {
-    //   return alert("Passwords do not match");
-    // }
+    if (data.password !== data.confirmPassword) {
+      return alert("Passwords do not match");
+    }
 
     const res = await fetch("/api/auth/register", {
       method: "POST",
